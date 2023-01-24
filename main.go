@@ -1,16 +1,13 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
-)
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	_, _ = fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
-}
+import "github.com/gin-gonic/gin"
 
 func main() {
-	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	router := gin.Default()
+
+	router.GET("/", func(ctx *gin.Context) {
+		ctx.JSON(200, gin.H{"message": "it's all working"})
+	})
+
+	panic(router.Run("8080"))
 }
