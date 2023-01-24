@@ -9,5 +9,5 @@ func main() {
 		ctx.JSON(200, gin.H{"message": "it's all working"})
 	})
 
-	panic(router.Run("8080"))
+	router.Run("8080")
 }
